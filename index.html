@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed PDF from OneDrive</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="pdfContainer">
+        <iframe src="https://1drv.ms/b/c/9878e71fab30100d/IQMWyh1-1MwZTpfsNS-Mr49DAW_C6wmn1aAuYp0inf7WbeU" width="800" height="1100" frameborder="0" scrolling="no"></iframe>
+        <!-- Paste the embed code generated from OneDrive here -->
+    </div>
+
+    <script>
+        const pdfContainer = document.getElementById('pdfContainer');
+        const offlineMessage = '<p>Your internet connection is off. Please turn it on.</p>';
+        let isOnline = navigator.onLine;
+
+        const showOfflineMessage = () => {
+            pdfContainer.innerHTML = offlineMessage;
+        };
+
+        const checkConnection = () => {
+            if (!navigator.onLine) {
+                isOnline = false;
+                showOfflineMessage();
+            } else {
+                if (!isOnline) {
+                    location.reload();
+                }
+            }
+        };
+
+        setInterval(checkConnection, 2000); // Check connection every 2 seconds
+    </script>
+</body>
+</html>
